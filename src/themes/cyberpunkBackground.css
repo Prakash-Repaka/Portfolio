@@ -1,0 +1,121 @@
+/* New cyberpunk background with moving shapes and subtle colors, CSS-only with basic mouse hover effects */
+
+@keyframes floatUpDown {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatLeftRight {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(20px);
+  }
+}
+
+/* Main background container */
+.cyberpunk-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  overflow: hidden;
+  z-index: -1;
+}
+
+/* Floating cubes */
+.cube {
+  position: absolute;
+  background: rgba(100, 150, 200, 0.3);
+  border: 1px solid rgba(100, 150, 200, 0.5);
+  box-shadow: 0 0 10px rgba(100, 150, 200, 0.4);
+  border-radius: 4px;
+  animation: floatUpDown 6s ease-in-out infinite;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cube:hover {
+  background: rgba(100, 150, 200, 0.6);
+  box-shadow: 0 0 20px rgba(100, 150, 200, 0.8);
+}
+
+/* Different sizes and positions for cubes */
+.cube:nth-child(1) {
+  width: 40px;
+  height: 40px;
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.cube:nth-child(2) {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  left: 60%;
+  animation-delay: 2s;
+  animation-name: floatLeftRight;
+}
+
+.cube:nth-child(3) {
+  width: 30px;
+  height: 30px;
+  top: 70%;
+  left: 80%;
+  animation-delay: 4s;
+}
+
+/* Floating letters */
+.letter {
+  position: absolute;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  color: rgba(150, 200, 250, 0.3);
+  user-select: none;
+  animation: floatUpDown 8s ease-in-out infinite;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.letter:hover {
+  color: rgba(150, 200, 250, 0.7);
+  text-shadow: 0 0 10px rgba(150, 200, 250, 0.8);
+}
+
+/* Different letters and positions */
+.letter:nth-child(4) {
+  top: 30%;
+  left: 40%;
+  animation-delay: 1s;
+}
+
+.letter:nth-child(5) {
+  top: 60%;
+  left: 70%;
+  animation-delay: 3s;
+}
+
+.letter:nth-child(6) {
+  top: 80%;
+  left: 25%;
+  animation-delay: 5s;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .cube:nth-child(1),
+  .cube:nth-child(2),
+  .cube:nth-child(3) {
+    width: 30px;
+    height: 30px;
+  }
+  .letter {
+    font-size: 18px;
+  }
+}

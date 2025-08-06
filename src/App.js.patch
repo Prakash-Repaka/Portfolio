@@ -1,0 +1,282 @@
+position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(270deg, #1a0000, #330000, #660000, #990000, #cc0000, #ff0000, #cc0000, #990000, #660000, #330000, #1a0000);
+  background-size: 2000% 2000%;
+  animation: gradientShift 40s ease infinite;
+  color: ${({ theme }) => theme.text1};
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(
+        20deg,
+        rgba(255, 0, 0, 0.4),
+        rgba(255, 0, 0, 0.4) 4px,
+        transparent 4px,
+        transparent 20px
+      ),
+      repeating-linear-gradient(
+        -20deg,
+        rgba(255, 80, 80, 0.3),
+        rgba(255, 80, 80, 0.3) 4px,
+        transparent 4px,
+        transparent 20px
+      ),
+      repeating-linear-gradient(
+        45deg,
+        rgba(255, 0, 0, 0.2),
+        rgba(255, 0, 0, 0.2) 2px,
+        transparent 2px,
+        transparent 10px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(255, 80, 80, 0.2),
+        rgba(255, 80, 80, 0.2) 2px,
+        transparent 2px,
+        transparent 10px
+      );
+    animation: glowPulse 5s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(255, 0, 0, 0.5) 2px, transparent 2px),
+      radial-gradient(rgba(255, 80, 80, 0.4) 2px, transparent 2px);
+    background-position: 0 0, 40px 40px;
+    background-size: 80px 80px;
+    animation: floatParticles 25s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0.6;
+      box-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000, 0 0 60px #ff6666, 0 0 80px #ff6666;
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 40px #ff0000, 0 0 80px #ff0000, 0 0 120px #ff6666, 0 0 160px #ff6666;
+    }
+  }
+
+  @keyframes floatParticles {
+    0% {
+      background-position: 0 0, 40px 40px;
+    }
+    50% {
+      background-position: 20px 20px, 60px 60px;
+    }
+    100% {
+      background-position: 0 0, 40px 40px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    &::before {
+      background:
+        repeating-linear-gradient(
+          20deg,
+          rgba(255, 0, 0, 0.3),
+          rgba(255, 0, 0, 0.3) 3px,
+          transparent 3px,
+          transparent 15px
+        ),
+        repeating-linear-gradient(
+          -20deg,
+          rgba(255, 80, 80, 0.25),
+          rgba(255, 80, 80, 0.25) 3px,
+          transparent 3px,
+          transparent 15px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgba(255, 0, 0, 0.15),
+          rgba(255, 0, 0, 0.15) 1.5px,
+          transparent 1.5px,
+          transparent 7.5px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(255, 80, 80, 0.15),
+          rgba(255, 80, 80, 0.15) 1.5px,
+          transparent 1.5px,
+          transparent 7.5px
+        );
+    }
+    &::after {
+      background-size: 40px 40px;
+    }
+  }
+`
+=======
+const Body = styled.div`
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: linear-gradient(270deg, #1a001a, #330033, #660066, #990099, #cc00cc, #ff00ff, #cc00cc, #990099, #660066, #330033, #1a001a);
+  background-size: 2000% 2000%;
+  animation: gradientShift 40s ease infinite;
+  color: ${({ theme }) => theme.text1};
+  z-index: 0;
+
+  &::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(
+        20deg,
+        rgba(128, 0, 128, 0.4),
+        rgba(128, 0, 128, 0.4) 4px,
+        transparent 4px,
+        transparent 20px
+      ),
+      repeating-linear-gradient(
+        -20deg,
+        rgba(186, 85, 211, 0.3),
+        rgba(186, 85, 211, 0.3) 4px,
+        transparent 4px,
+        transparent 20px
+      ),
+      repeating-linear-gradient(
+        45deg,
+        rgba(128, 0, 128, 0.2),
+        rgba(128, 0, 128, 0.2) 2px,
+        transparent 2px,
+        transparent 10px
+      ),
+      repeating-linear-gradient(
+        -45deg,
+        rgba(186, 85, 211, 0.2),
+        rgba(186, 85, 211, 0.2) 2px,
+        transparent 2px,
+        transparent 10px
+      );
+    animation: glowPulse 5s ease-in-out infinite;
+    z-index: -1;
+  }
+
+  &::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    background-image:
+      radial-gradient(rgba(128, 0, 128, 0.5) 2px, transparent 2px),
+      radial-gradient(rgba(186, 85, 211, 0.4) 2px, transparent 2px);
+    background-position: 0 0, 40px 40px;
+    background-size: 80px 80px;
+    animation: floatParticles 25s linear infinite;
+    z-index: -1;
+  }
+
+  @keyframes gradientShift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes glowPulse {
+    0%, 100% {
+      opacity: 0.6;
+      box-shadow: 0 0 20px #800080, 0 0 40px #800080, 0 0 60px #ba55d3, 0 0 80px #ba55d3;
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 40px #800080, 0 0 80px #800080, 0 0 120px #ba55d3, 0 0 160px #ba55d3;
+    }
+  }
+
+  @keyframes floatParticles {
+    0% {
+      background-position: 0 0, 40px 40px;
+    }
+    50% {
+      background-position: 20px 20px, 60px 60px;
+    }
+    100% {
+      background-position: 0 0, 40px 40px;
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    &::before {
+      background:
+        repeating-linear-gradient(
+          20deg,
+          rgba(128, 0, 128, 0.3),
+          rgba(128, 0, 128, 0.3) 3px,
+          transparent 3px,
+          transparent 15px
+        ),
+        repeating-linear-gradient(
+          -20deg,
+          rgba(186, 85, 211, 0.25),
+          rgba(186, 85, 211, 0.25) 3px,
+          transparent 3px,
+          transparent 15px
+        ),
+        repeating-linear-gradient(
+          45deg,
+          rgba(128, 0, 128, 0.15),
+          rgba(128, 0, 128, 0.15) 1.5px,
+          transparent 1.5px,
+          transparent 7.5px
+        ),
+        repeating-linear-gradient(
+          -45deg,
+          rgba(186, 85, 211, 0.15),
+          rgba(186, 85, 211, 0.15) 1.5px,
+          transparent 1.5px,
+          transparent 7.5px
+        );
+    }
+    &::after {
+      background-size: 40px 40px;
+    }
+  }
+`
