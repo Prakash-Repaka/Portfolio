@@ -30,7 +30,7 @@ font-size: 42px;
 text-align: center;
 font-weight: 600;
 margin-top: 20px;
-  color: ${({ theme }) => theme.text1};
+  color: ${({ theme }) => theme.text_primary};
   @media (max-width: 768px) {
 margin-top: 12px;
       font-size: 32px;
@@ -41,7 +41,7 @@ export const Desc = styled.div`
     font-size: 18px;
     text-align: center;
     max-width: 600px;
-    color: #A8CFFF;
+    color: ${({ theme }) => theme.text_secondary};
     @media (max-width: 768px) {
         font-size: 16px;
     }
@@ -59,23 +59,26 @@ const SkillsContainer = styled.div`
 const Skill = styled.div`
   width: 100%;
   max-width: 500px;
-  background: ${({ theme }) => theme.background2};
-  border: 0.1px solid rgba(133, 76, 230, 0.8);
-  box-shadow: 0 0 20px 2px rgba(133, 76, 230, 0.7);
-  border-radius: 16px;
-  padding: 20px 36px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: ${({ theme }) => theme.card};
+  border: 1px solid ${({ theme }) => theme.border};
+  box-shadow: 0 0 10px ${({ theme }) => theme.shadowDark};
+  border-radius: 4px; /* Less rounded */
+  padding: 18px 36px;
+  transition: all 0.3s ease-in-out;
+  backdrop-filter: blur(10px);
+  
   &:hover {
-    transform: scale(1.05) translateY(-8px);
-    box-shadow: 0 0 40px 6px rgba(133, 76, 230, 1);
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px ${({ theme }) => theme.shadow};
+    border-color: ${({ theme }) => theme.primary};
   }
   @media (max-width: 768px) {
     max-width: 400px;
-    padding: 16px 36px;
+    padding: 10px 36px;
   }
   @media (max-width: 500px) {
     max-width: 330px;
-    padding: 16px 36px;
+    padding: 10px 36px;
   }
 `
 
@@ -98,14 +101,22 @@ const SkillList = styled.div`
 const SkillItem = styled.div`
   font-size: 16px;
   font-weight: 400;
-  color: #A8CFFF;
-  border: 1px solid #A8CFFF;
-  border-radius: 12px;
+  color: ${({ theme }) => theme.text_primary + 80};
+  border: 1px solid ${({ theme }) => theme.text_primary + 30};
+  border-radius: 4px;
   padding: 12px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+      border-color: ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.primary};
+      box-shadow: 0 0 5px ${({ theme }) => theme.shadow};
+  }
+  
   @media (max-width: 768px) {
     font-size: 14px;
     padding: 8px 12px;
@@ -136,10 +147,10 @@ const Skills = () => {
               <SkillList>
                 {skill.skills.map((item, idx) => (
                   <SkillItem key={idx}>
-                    <SkillImage 
-                      src={item.image} 
-                      alt={item.name + " logo"} 
-                      width={32} 
+                    <SkillImage
+                      src={item.image}
+                      alt={item.name + " logo"}
+                      width={32}
                       height={32}
                       onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/32?text=No+Logo"; }}
                     />

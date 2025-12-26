@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import _default from '../../themes/default';
 
 export const Nav = styled.div`
-    background-color: ${({theme}) => theme.card_light};
+    background-color: ${({ theme }) => theme.card_light};
     height: 80px;
     display: flex;
     align-items: center;
@@ -12,6 +12,8 @@ export const Nav = styled.div`
     position: sticky;
     top: 0;
     z-index: 10;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid ${({ theme }) => theme.primary};
     @media (max-width: 960px) {
         trastion: 0.8s all ease;
     }
@@ -65,6 +67,7 @@ export const NavLink = styled.a`
     text-decoration: none;
     :hover {
       color: ${({ theme }) => theme.primary};
+      text-shadow: 0 0 10px ${({ theme }) => theme.primary};
     }
 
     &.active {
@@ -74,22 +77,23 @@ export const NavLink = styled.a`
 
 
 export const GitHubButton = styled.a`
-  border: 1.8px solid ${({ theme }) => theme.primary};
+  border: 1px solid ${({ theme }) => theme.primary};
   justify-content: center;
   display: flex;
   align-items: center;
   height: 70%;
-  border-radius: 20px;
+  border-radius: 4px; /* Less rounded for terminal look */
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
   padding: 0 20px;
   font-weight: 500;
   text-decoration: none;
   font-size: 16px;
-  transition: all 0.6s ease-in-out;
+  transition: all 0.3s ease-in-out;
     :hover {
       background: ${({ theme }) => theme.primary};
-      color: ${({ theme }) => theme.white};     
+      color: ${({ theme }) => theme.black};
+      box-shadow: 0 0 20px ${({ theme }) => theme.shadow}; 
     }
     @media screen and (max-width: 768px) { 
     font-size: 14px;
@@ -133,7 +137,9 @@ export const MobileMenu = styled.div`
     right: 0;
     width: 100%;
     padding: 12px 40px 24px 40px;
-    background: ${({ theme }) => theme.card_light+99};
+    background: ${({ theme }) => theme.card_light};
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid ${({ theme }) => theme.primary};
     transition: all 0.6s ease-in-out;
     transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(-100%)')};
     border-radius: 0 0 20px 20px;
@@ -190,7 +196,7 @@ export const MobileMenuButton = styled.a`
   }
 `;
 
-export  const MobileLink = styled.a`
+export const MobileLink = styled.a`
   color: ${({ theme }) => theme.text_primary};
   font-weight: 500;
   cursor: pointer;

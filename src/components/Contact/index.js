@@ -62,10 +62,12 @@ const ContactForm = styled.form`
   flex-direction: column;
   background-color: ${({ theme }) => theme.card};
   padding: 32px;
-  border-radius: 16px;
-  box-shadow: rgba(23, 92, 230, 0.15) 0px 4px 24px;
+  border-radius: 4px; /* Less rounded */
+  border: 1px solid ${({ theme }) => theme.border};
+  box-shadow: 0 0 10px ${({ theme }) => theme.shadowDark};
   margin-top: 28px;
   gap: 12px;
+  backdrop-filter: blur(10px);
 `
 
 const ContactTitle = styled.div`
@@ -82,10 +84,11 @@ const ContactInput = styled.input`
   outline: none;
   font-size: 18px;
   color: ${({ theme }) => theme.text_primary};
-  border-radius: 12px;
+  border-radius: 4px; /* Less rounded */
   padding: 12px 16px;
   &:focus {
     border: 1px solid ${({ theme }) => theme.primary};
+    box-shadow: 0 0 5px ${({ theme }) => theme.shadow};
   }
 `
 
@@ -96,10 +99,11 @@ const ContactInputMessage = styled.textarea`
   outline: none;
   font-size: 18px;
   color: ${({ theme }) => theme.text_primary};
-  border-radius: 12px;
+  border-radius: 4px;
   padding: 12px 16px;
   &:focus {
     border: 1px solid ${({ theme }) => theme.primary};
+    box-shadow: 0 0 5px ${({ theme }) => theme.shadow};
   }
 `
 
@@ -107,17 +111,21 @@ const ContactButton = styled.input`
   width: 100%;
   text-decoration: none;
   text-align: center;
-  background: hsla(271, 100%, 50%, 0.62);
-  background: linear-gradient(225deg, hsla(271, 100%, 50%, 0.53) 0%, hsla(274, 100%, 50%, 1.00) 100%);
-  background: -moz-linear-gradient(225deg, hsla(271, 100%, 50%, 0.67) 0%, hsla(275,100%, 50%, 1) 100%);
-  background: -webkit-linear-gradient(225deg, hsla(271, 100%, 50%, 0.52) 0%, hsla(275, 100%, 50%, 1.00) 100%);
+  background: ${({ theme }) => theme.button};
   padding: 13px 16px;
   margin-top: 2px;
-  border-radius: 12px;
+  border-radius: 4px;
   border: none;
-  color: ${({ theme }) => theme.text_primary};
+  color: ${({ theme }) => theme.buttonText}; // Black text on Green button
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+      background: ${({ theme }) => theme.buttonHover};
+      box-shadow: 0 0 20px ${({ theme }) => theme.shadow};
+  }
 `
 
 
@@ -157,7 +165,7 @@ const Contact = () => {
         <Snackbar
           open={open}
           autoHideDuration={6000}
-          onClose={()=>setOpen(false)}
+          onClose={() => setOpen(false)}
           message="Email sent successfully!"
           severity="success"
         />

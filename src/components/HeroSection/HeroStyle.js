@@ -1,21 +1,24 @@
 import styled from "styled-components";
-import _default from "../../themes/default";
 
 export const HeroContainer = styled.div`
-  background: ${({ theme }) => theme.card_light};
+  background: transparent;
   display: flex;
   justify-content: center;
   position: relative;
-  padding: 80px 30px;
+  padding: 120px 30px 80px;
+  min-height: 100vh;
+  overflow: hidden;
+  
   @media (max-width: 960px) {
-    padding: 66px 16px;
+    padding: 100px 16px 60px;
+    min-height: auto;
   }
-  @media (max-width: 640) {
-    padding: 32px 16px;
+  
+  @media (max-width: 640px) {
+    padding: 80px 16px 40px;
   }
+  
   z-index: 1;
-
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 70% 95%, 0 100%);
 `;
 
 export const HeroBg = styled.div`
@@ -26,19 +29,19 @@ export const HeroBg = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 100%  ;
   height: 100%;
   max-width: 1360px;
   overflow: hidden;
   padding: 0 30px;
   top: 50%;
   left: 50%;
-  -webkit-transform: translateX(-50%) translateY(-50%);
   transform: translateX(-50%) translateY(-50%);
+  z-index: 0;
 
   @media (max-width: 960px) {
     justify-content: center;
-    padding: 0 0px;
+    padding: 0;
   }
 `;
 
@@ -48,29 +51,27 @@ export const HeroInnerContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   width: 100%;
-  max-width: 1100px;
+  max-width: 1200px;
+  gap: 40px;
+  z-index: 1;
 
   @media (max-width: 960px) {
     flex-direction: column;
+    gap: 20px;
   }
 `;
+
 export const HeroLeftContainer = styled.div`
   width: 100%;
   order: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  
   @media (max-width: 960px) {
     order: 2;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
     align-items: center;
-  }
-
-  @media (max-width: 640px) {
-    order: 2;
-    margin-bottom: 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    text-align: center;
   }
 `;
 
@@ -78,13 +79,12 @@ export const HeroRightContainer = styled.div`
   width: 100%;
   display: flex;
   order: 2;
-  justify-content: end;
-  gap: 12px;
+  justify-content: center;
+  align-items: center;
+  
   @media (max-width: 960px) {
     order: 1;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 80px;
+    margin-bottom: 40px;
   }
 
   @media (max-width: 640px) {
@@ -96,14 +96,22 @@ export const Img = styled.img`
   position: relative;
   width: 100%;
   height: 100%;
-  max-width: 400px;
-  max-height: 400px;
+  max-width: 450px;
+  max-height: 450px;
   border-radius: 50%;
-  border: 2px solid ${({ theme }) => theme.primary};
+  object-fit: cover;
+  border: 4px solid ${({ theme }) => theme.primary};
+  box-shadow: 0 0 20px ${({ theme }) => theme.primary};
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 40px ${({ theme }) => theme.primary}, 0 0 10px ${({ theme }) => theme.white};
+  }
 
   @media (max-width: 768px) {
-    max-width: 400px;
-    max-height: 400px;
+    max-width: 350px;
+    max-height: 350px;
   }
 
   @media (max-width: 640px) {
@@ -114,17 +122,21 @@ export const Img = styled.img`
 
 export const Title = styled.div`
   font-weight: 700;
-  font-size: 50px;
+  font-size: 56px;
   color: ${({ theme }) => theme.text_primary};
-  line-height: 68px;
+  line-height: 1.2;
+  margin-bottom: 8px;
+  
+  /* Text shadow for glow effect */
+  text-shadow: 2px 2px 0px ${({ theme }) => theme.primary};
+  
   @media (max-width: 960px) {
     text-align: center;
+    font-size: 48px;
   }
 
   @media (max-width: 640px) {
-    font-size: 40px;
-    line-height: 48px;
-    margin-bottom: 8px;
+    font-size: 36px;
   }
 `;
 
@@ -133,71 +145,127 @@ export const TextLoop = styled.div`
   font-size: 32px;
   display: flex;
   gap: 12px;
-  color: ${({ theme }) => theme.text_primary};
-  line-height: 68px;
+  align-items: center;
+  color: ${({ theme }) => theme.text_secondary};
+  line-height: 1.4;
+  
   @media (max-width: 960px) {
+    justify-content: center;
     text-align: center;
   }
+  
   @media (max-width: 640px) {
-    font-size: 22px;
-    line-height: 48px;
-    margin-bottom: 16px;
+    font-size: 24px;
+    flex-direction: column;
+    gap: 8px;
   }
 `;
 
 export const Span = styled.span`
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
+  font-weight: 700;
+  text-shadow: 0 0 10px ${({ theme }) => theme.primary};
+  
+  /* Typewriter cursor effect */
+  .Typewriter__cursor {
+    color: ${({ theme }) => theme.primary};
+  }
 `;
 
 export const SubTitle = styled.div`
-  font-size: 20px;
-  line-height: 32px;
-  margin-bottom: 42px;
-  color: ${({ theme }) => theme.text_primary + 95};
+  font-size: 18px;
+  line-height: 1.8;
+  margin-bottom: 32px;
+  color: ${({ theme }) => theme.text_secondary};
+  max-width: 600px;
+  font-weight: 400;
 
   @media (max-width: 960px) {
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   @media (max-width: 640px) {
     font-size: 16px;
-    line-height: 32px;
+    line-height: 1.6;
   }
 `;
 
 export const ResumeButton = styled.a`
-    -webkit-appearance: button;
-    -moz-appearance: button;
-    appearance: button;
-    text-decoration: none;
-    width: 95%;
-    max-width: 300px;
-    text-align: center;
-    padding: 16px 0;
-    color:${({ theme }) => theme.white};
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 20px;
-    font-weight: 600;
-    transition: all 0.2s ease-in-out !important;
-    background: hsla(271, 100%, 50%, 1);
-    background: linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -moz-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    background: -webkit-linear-gradient(225deg, hsla(271, 100%, 50%, 1) 0%, hsla(294, 100%, 50%, 1) 100%);
-    box-shadow:  20px 20px 60px #1F2634,
-    -20px -20px 60px #1F2634;
-    &:hover {
-        transform: scale(1.05);
-    transition: all 0.4s ease-in-out;
-    box-shadow:  20px 20px 60px #1F2634,
-    filter: brightness(1);
-    }    
-    
-    
-    @media (max-width: 640px) {
-        padding: 12px 0;
-        font-size: 18px;
-    } 
+  appearance: button;
+  text-decoration: none;
+  width: fit-content;
+  max-width: 300px;
+  text-align: center;
+  padding: 16px 48px;
+  color: ${({ theme }) => theme.primary};
+  border-radius: 4px; /* Less rounded */
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  background: transparent;
+  border: 2px solid ${({ theme }) => theme.primary};
+  box-shadow: 0 0 10px ${({ theme }) => theme.shadow};
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 
+  &:hover {
+    transform: translateY(-3px);
+    background: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.black};
+    box-shadow: 0 0 30px ${({ theme }) => theme.primary};
+  }
+
+  &:active {
+    transform: translateY(-1px);
+  }
+    
+  @media (max-width: 960px) {
+    margin: 0 auto;
+  }
+
+  @media (max-width: 640px) {
+    padding: 14px 36px;
+    font-size: 16px;
+  } 
 `;
+
+export const ScrollIndicator = styled.div`
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: ${({ theme }) => theme.text_secondary};
+  font-size: 14px;
+  animation: bounce 2s infinite;
+  cursor: pointer;
+
+  @keyframes bounce {
+    0%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    50% {
+      transform: translateX(-50%) translateY(10px);
+    }
+  }
+
+  &::after {
+    content: '↓';
+    font-size: 24px;
+    color: ${({ theme }) => theme.primary};
+  }
+
+  @media (max-width: 640px) {
+    bottom: 20px;
+    font-size: 12px;
+  }
+`;
+

@@ -18,20 +18,22 @@ const Button = styled.button`
 const Card = styled.div`
     width: 330px;
     height: 490px;
-    background-color: ${({ theme }) => theme.background2};
+    background-color: ${({ theme }) => theme.card};
     cursor: pointer;
-    border-radius: 16px;
-    box-shadow: 0 0 20px 2px rgba(133, 76, 230, 0.7);
+    border-radius: 4px; /* Less rounded */
+    border: 1px solid ${({ theme }) => theme.border};
+    box-shadow: 0 0 10px ${({ theme }) => theme.shadowDark};
     overflow: hidden;
     padding: 26px 20px;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease-in-out;
+    
     &:hover {
-        transform: scale(1.05) translateY(-8px);
-        box-shadow: 0 0 60px 6px rgba(133, 76, 230, 1);
-        filter: brightness(1.1);
+        transform: translateY(-8px);
+        box-shadow: 0 0 20px ${({ theme }) => theme.shadow};
+        border-color: ${({ theme }) => theme.primary};
     }
     &:hover ${Button} {
         display: block;
@@ -41,9 +43,10 @@ const Card = styled.div`
 const Image = styled.img`
     width: 100%;
     height: 180px;
-    background-color: ${({ theme }) => theme.background2};
-    border-radius: 10px;
-    box-shadow: 0 0 16px 2px rgba(133, 76, 230, 0.5);
+    background-color: ${({ theme }) => theme.white};
+    border-radius: 4px;
+    box-shadow: 0 0 16px 2px rgba(0,0,0,0.3);
+    object-fit: cover;
 `
 
 const Tags = styled.div`
@@ -61,7 +64,8 @@ const Tag = styled.span`
     color: ${({ theme }) => theme.primary};
     background-color: ${({ theme }) => theme.primary + 15};
     padding: 2px 8px;
-    border-radius: 10px;
+    border-radius: 4px;
+    border: 1px solid ${({ theme }) => theme.primary + 50};
 `
 
 const Details = styled.div`
@@ -74,7 +78,7 @@ const Details = styled.div`
 const Title = styled.div`
     font-size: 20px;
     font-weight: 600;
-    color: rgba(168, 207, 255, 0.99);
+    color: ${({ theme }) => theme.text_secondary};
     overflow: hidden;
     display: -webkit-box;
     max-width: 100%;
@@ -88,7 +92,7 @@ const Date = styled.div`
     font-size: 12px;
     margin-left: 2px;
     font-weight: 400;
-    color: rgba(168, 207, 255, 0.8);
+    color: ${({ theme }) => theme.text_secondary + 80};
     @media only screen and (max-width: 768px){
         font-size: 10px;
     }
@@ -97,7 +101,7 @@ const Date = styled.div`
 
 const Description = styled.div`
     font-weight: 400;
-    color: rgba(168, 207, 255, 0.99);
+    color: ${({ theme }) => theme.text_secondary + 99};
     overflow: hidden;
     margin-top: 8px;
     display: -webkit-box;
@@ -117,18 +121,18 @@ const Avatar = styled.img`
     height: 38px;
     border-radius: 50%;
     margin-left: -10px;
-    background-color: ${({ theme }) => theme.card};
+    background-color: ${({ theme }) => theme.white};
     box-shadow: 0 0 10px rgba(0,0,0,0.2);
     border: 3px solid ${({ theme }) => theme.card};
 `
 
-const ProjectCards = ({project,setOpenModal}) => {
+const ProjectCards = ({ project, setOpenModal }) => {
     return (
-        <Card onClick={() => setOpenModal({state: true, project: project})}>
-            <Image src={project.image}/>
+        <Card onClick={() => setOpenModal({ state: true, project: project })}>
+            <Image src={project.image} />
             <Tags>
                 {project.tags?.map((tag, index) => (
-                <Tag>{tag}</Tag>
+                    <Tag>{tag}</Tag>
                 ))}
             </Tags>
             <Details>
@@ -138,7 +142,7 @@ const ProjectCards = ({project,setOpenModal}) => {
             </Details>
             <Members>
                 {project.member?.map((member) => (
-                    <Avatar src={member.img}/>
+                    <Avatar src={member.img} />
                 ))}
             </Members>
             {/* <Button>View Project</Button> */}
