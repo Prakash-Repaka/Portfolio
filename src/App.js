@@ -16,6 +16,7 @@ import Education from "./components/Education";
 import ProjectDetails from "./components/ProjectDetails";
 import styled from "styled-components";
 import MatrixBackground from "./components/MatrixBackground";
+import Certifications from "./components/Certifications";
 
 const Body = styled.div`
   position: relative;
@@ -50,6 +51,7 @@ function App() {
           </Wrapper>
           <Projects openModal={openModal} setOpenModal={setOpenModal} />
           <Wrapper>
+            <Certifications />
             <Education />
             <Contact />
           </Wrapper>

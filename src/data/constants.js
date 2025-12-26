@@ -17,7 +17,7 @@ export const Bio = {
 };
 
 export const skills = [
- {
+  {
     title: "Cybersecurity",
     skills: [
       { name: "Kali Linux", image: "https://imgs.search.brave.com/JCq_PMMqQWFR-2sPYm9i4zR0aPMSsw382RVndKvoQdk/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9paDEu/cmVkYnViYmxlLm5l/dC9pbWFnZS40NzMw/NzQ3ODQ4Ljc1Njkv/bXAsNTA0eDQ5OCxt/YXR0ZSxmOGY4Zjgs/dC1wYWQsNjAweDYw/MCxmOGY4ZjguanBn" },
@@ -26,10 +26,10 @@ export const skills = [
       { name: "Nmap", image: "https://nmap.org/images/nmap-logo-256x256.png" },
       { name: "Metasploit", image: "https://imgs.search.brave.com/U9g4VOfw41D9_ny1Fx7J2cPrnrCXXEYBKxzK0SZTNwA/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93YWxs/cGFwZXJhY2Nlc3Mu/Y29tL2Z1bGwvOTQx/MDU4Mi5qcGc  " },
       { name: "SET Toolkit", image: "https://imgs.search.brave.com/WYmzU7ZgeBX8bFUVPfXEJ_rimckgSilkgE7hSNhPa2s/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/a2FsaS5vcmcvdG9v/bHMvc2V0L2ltYWdl/cy9zZXQtbG9nby5z/dmc" },
-      
+
     ]
   },
-   
+
   {
     title: "Networking & OS",
     skills: [
@@ -38,7 +38,7 @@ export const skills = [
       { name: "Wireshark", image: "https://imgs.search.brave.com/z9Z2AMideAGz82al_LrsuObeIq0ss6emhIEfb30z08c/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly9pbWFn/ZXMuc2Vla2xvZ28u/Y29tL2xvZ28tcG5n/LzIzLzEvd2lyZXNo/YXJrLWxvZ28tcG5n/X3NlZWtsb2dvLTIz/MTAzNC5wbmc_dj0x/OTU1MzU0MDEyMzMx/ODM2NzYw" },
       { name: "Ubuntu", image: "https://assets.ubuntu.com/v1/29985a98-ubuntu-logo32.png" },
     ]
-   
+
   },
   {
     title: "Programming",
@@ -48,12 +48,12 @@ export const skills = [
       { name: "HTML", image: "https://www.w3.org/html/logo/badge/html5-badge-h-solo.png" },
       { name: "CSS", image: "https://upload.wikimedia.org/wikipedia/commons/d/d5/CSS3_logo_and_wordmark.svg" },
       { name: "JavaScript", image: "https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" },
-      {name:"BashScript", image: "https://imgs.search.brave.com/iHQFrdF6Xn0aeT_upXLqdDQxTOKakHNA6kwAdYfErho/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGlrcG5nLmNvbS9w/bmdsL20vNTM3LTUz/NzYwNzRfYmxvZy1s/b2dvLWJhc2gtc2Ny/aXB0LWxvZ28tY2xp/cGFydC5wbmc"},
+      { name: "BashScript", image: "https://imgs.search.brave.com/iHQFrdF6Xn0aeT_upXLqdDQxTOKakHNA6kwAdYfErho/rs:fit:500:0:1:0/g:ce/aHR0cHM6Ly93d3cu/cGlrcG5nLmNvbS9w/bmdsL20vNTM3LTUz/NzYwNzRfYmxvZy1s/b2dvLWJhc2gtc2Ny/aXB0LWxvZ28tY2xp/cGFydC5wbmc" },
 
     ]
   },
   {
-     title: "Tools",
+    title: "Tools",
     skills: [
       { name: "Git", image: "https://git-scm.com/images/logos/downloads/Git-Icon-1788C.png" },
       { name: "GitHub", image: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" },
@@ -227,4 +227,51 @@ export const projects = [
   }
 ];
 
+export const certifications = [
+  {
+    id: 0,
+    title: "Junior Penetration Tester",
+    issuer: "TryHackMe",
+    date: "2024",
+    desc: "Hands-on penetration testing path covering methodology, reconnaissance, and exploitation.",
+    image: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-MWIVG5L.png",
+    link: "https://tryhackme.com"
+  },
+  {
+    id: 1,
+    title: "Advent of Cyber 2025, 2024, 2022",
+    issuer: "TryHackMe",
+    date: "2022 - 2025",
+    desc: "Completed annual cybersecurity challenges covering web, network, and cloud security topics.",
+    image: "https://tryhackme-certificates.s3-eu-west-1.amazonaws.com/THM-AOC2023.png",
+    link: "https://tryhackme.com"
+  },
+  {
+    id: 2,
+    title: "Network Security, Cloud Security, SOC",
+    issuer: "Palo Alto Networks",
+    date: "2024",
+    desc: "Comprehensive training on firewall configuration, cloud security principles, and Security Operations Center (SOC) operations.",
+    image: "https://www.paloaltonetworks.com/content/dam/pan/en_US/images/logos/brand/pan-logo-badge-blue-medium-kick-up.png",
+    link: "https://www.paloaltonetworks.com/"
+  },
+  {
+    id: 3,
+    title: "VAPT",
+    issuer: "Technoquer Academy",
+    date: "2024",
+    desc: "Specialized training in Vulnerability Assessment and Penetration Testing.",
+    image: "https://technoquer.com/wp-content/uploads/2023/07/Technoquer-Logo.png",
+    link: "https://technoquer.com/"
+  },
+  {
+    id: 4,
+    title: "FMML",
+    issuer: "IIIT-H",
+    date: "2024",
+    desc: "Foundations of Modern Machine Learning course.",
+    image: "https://avatars.githubusercontent.com/u/4922649?s=200&v=4",
+    link: "https://ihub-data.iiit.ac.in/programs/events/fmml/"
+  }
+];
 
