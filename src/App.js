@@ -40,7 +40,7 @@ function App() {
 
   return (
     <ThemeProvider theme={darkMode ? darkTheme : lightTheme}>
-      <Router >
+      <Router basename={process.env.PUBLIC_URL}>
         <Navbar />
         <MatrixBackground />
         <Body>
