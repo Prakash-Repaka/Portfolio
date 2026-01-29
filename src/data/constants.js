@@ -272,6 +272,15 @@ export const certifications = [
     desc: "Foundations of Modern Machine Learning course.",
     image: "https://avatars.githubusercontent.com/u/4922649?s=200&v=4",
     link: "https://ihub-data.iiit.ac.in/programs/events/fmml/"
+  },
+  {
+    id: 5,
+    title: "Qualcomm 5G Introductory Certificate",
+    issuer: "Qualcomm Wireless Academy",
+    date: "2024",
+    desc: "Comprehensive introduction to 5G technology, network architecture, and wireless communications.",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Qualcomm-Logo.svg/2560px-Qualcomm-Logo.svg.png",
+    link: "https://www.qualcomm.com/products/technology/5g"
   }
 ];
 

@@ -1,13 +1,29 @@
 import styled from "styled-components";
 
 export const HeroContainer = styled.div`
-  background: transparent;
+  background: ${({ theme }) => theme.gradientTerminal};
   display: flex;
   justify-content: center;
   position: relative;
   padding: 120px 30px 80px;
   min-height: 100vh;
   overflow: hidden;
+  
+  /* Terminal grid overlay */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      linear-gradient(rgba(0, 255, 65, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 255, 65, 0.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+    pointer-events: none;
+    z-index: 0;
+  }
   
   @media (max-width: 960px) {
     padding: 100px 16px 60px;
@@ -29,7 +45,7 @@ export const HeroBg = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  width: 100%  ;
+  width: 100%;
   height: 100%;
   max-width: 1360px;
   overflow: hidden;
@@ -54,6 +70,7 @@ export const HeroInnerContainer = styled.div`
   max-width: 1200px;
   gap: 40px;
   z-index: 1;
+  animation: fadeInUp 0.8s ease-out;
 
   @media (max-width: 960px) {
     flex-direction: column;
@@ -67,6 +84,7 @@ export const HeroLeftContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  animation: fadeInUp 1s ease-out 0.2s backwards;
   
   @media (max-width: 960px) {
     order: 2;
@@ -81,6 +99,7 @@ export const HeroRightContainer = styled.div`
   order: 2;
   justify-content: center;
   align-items: center;
+  animation: fadeInUp 1s ease-out 0.4s backwards;
   
   @media (max-width: 960px) {
     order: 1;
@@ -94,19 +113,31 @@ export const HeroRightContainer = styled.div`
 
 export const Img = styled.img`
   position: relative;
-  width: 100%;
+  width: 100%  ;
   height: 100%;
   max-width: 450px;
   max-height: 450px;
   border-radius: 50%;
   object-fit: cover;
+  
+  /* Terminal-style border with animated glow */
   border: 4px solid ${({ theme }) => theme.primary};
-  box-shadow: 0 0 20px ${({ theme }) => theme.primary};
-  transition: all 0.3s ease;
+  box-shadow: 
+    0 0 20px ${({ theme }) => theme.shadow},
+    0 0 40px ${({ theme }) => theme.shadow},
+    inset 0 0 20px rgba(0, 255, 65, 0.1);
+  
+  transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+  animation: border-glow 3s ease-in-out infinite;
 
   &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 40px ${({ theme }) => theme.primary}, 0 0 10px ${({ theme }) => theme.white};
+    transform: scale(1.05) rotateZ(2deg);
+    box-shadow: 
+      0 0 30px ${({ theme }) => theme.primary},
+      0 0 60px ${({ theme }) => theme.shadowCyan},
+      0 0 90px ${({ theme }) => theme.shadow},
+      inset 0 0 30px rgba(0, 255, 255, 0.2);
+    border-color: ${({ theme }) => theme.neonCyan};
   }
 
   @media (max-width: 768px) {
@@ -126,9 +157,15 @@ export const Title = styled.div`
   color: ${({ theme }) => theme.text_primary};
   line-height: 1.2;
   margin-bottom: 8px;
+  font-family: 'JetBrains Mono', monospace;
   
-  /* Text shadow for glow effect */
-  text-shadow: 2px 2px 0px ${({ theme }) => theme.primary};
+  /* Terminal-style text glow */
+  text-shadow: 
+    0 0 10px ${({ theme }) => theme.primary},
+    0 0 20px ${({ theme }) => theme.primary},
+    0 0 30px ${({ theme }) => theme.shadow};
+  
+  animation: glow-pulse 3s ease-in-out infinite;
   
   @media (max-width: 960px) {
     text-align: center;
@@ -162,14 +199,21 @@ export const TextLoop = styled.div`
 `;
 
 export const Span = styled.span`
-  color: ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.neonCyan};
   cursor: pointer;
   font-weight: 700;
-  text-shadow: 0 0 10px ${({ theme }) => theme.primary};
+  text-shadow: 
+    0 0 10px ${({ theme }) => theme.neonCyan},
+    0 0 20px ${({ theme }) => theme.shadowCyan};
   
   /* Typewriter cursor effect */
   .Typewriter__cursor {
-    color: ${({ theme }) => theme.primary};
+    color: ${({ theme }) => theme.neonCyan};
+    animation: blink 1s step-end infinite;
+  }
+  
+  .Typewriter__wrapper {
+    color: ${({ theme }) => theme.neonCyan};
   }
 `;
 
@@ -177,9 +221,10 @@ export const SubTitle = styled.div`
   font-size: 18px;
   line-height: 1.8;
   margin-bottom: 32px;
-  color: ${({ theme }) => theme.text_secondary};
+  color: ${({ theme }) => theme.text_white};
   max-width: 600px;
   font-weight: 400;
+  opacity: 0.9;
 
   @media (max-width: 960px) {
     text-align: center;
@@ -200,24 +245,48 @@ export const ResumeButton = styled.a`
   max-width: 300px;
   text-align: center;
   padding: 16px 48px;
-  color: ${({ theme }) => theme.primary};
-  border-radius: 4px; /* Less rounded */
+  color: ${({ theme }) => theme.black};
+  border-radius: 2px;
   cursor: pointer;
   font-size: 18px;
-  font-weight: 600;
-  transition: all 0.3s ease;
-  background: transparent;
+  font-weight: 700;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  background: ${({ theme }) => theme.primary};
   border: 2px solid ${({ theme }) => theme.primary};
-  box-shadow: 0 0 10px ${({ theme }) => theme.shadow};
+  box-shadow: 
+    0 0 20px ${({ theme }) => theme.shadow},
+    inset 0 0 10px rgba(0, 255, 65, 0.3);
   position: relative;
   overflow: hidden;
   z-index: 1;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  /* Terminal button effect */
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: ${({ theme }) => theme.neonCyan};
+    transition: left 0.4s ease;
+    z-index: -1;
+  }
 
   &:hover {
     transform: translateY(-3px);
-    background: ${({ theme }) => theme.primary};
     color: ${({ theme }) => theme.black};
-    box-shadow: 0 0 30px ${({ theme }) => theme.primary};
+    border-color: ${({ theme }) => theme.neonCyan};
+    box-shadow: 
+      0 0 30px ${({ theme }) => theme.shadowCyan},
+      0 0 50px ${({ theme }) => theme.shadow},
+      inset 0 0 20px rgba(0, 255, 255, 0.4);
+  }
+  
+  &:hover::before {
+    left: 0;
   }
 
   &:active {
@@ -261,6 +330,7 @@ export const ScrollIndicator = styled.div`
     content: '↓';
     font-size: 24px;
     color: ${({ theme }) => theme.primary};
+    text-shadow: 0 0 10px ${({ theme }) => theme.primary};
   }
 
   @media (max-width: 640px) {
@@ -268,4 +338,3 @@ export const ScrollIndicator = styled.div`
     font-size: 12px;
   }
 `;
-

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import _default from '../../themes/default';
 
 export const Nav = styled.div`
-    background-color: ${({ theme }) => theme.card_light};
+    background: ${({ theme }) => theme.cardGlass};
     height: 80px;
     display: flex;
     align-items: center;
@@ -12,10 +12,32 @@ export const Nav = styled.div`
     position: sticky;
     top: 0;
     z-index: 10;
-    backdrop-filter: blur(10px);
-    border-bottom: 1px solid ${({ theme }) => theme.primary};
+    backdrop-filter: ${({ theme }) => theme.glassBlur};
+    -webkit-backdrop-filter: ${({ theme }) => theme.glassBlur};
+    border-bottom: 2px solid ${({ theme }) => theme.borderGlow};
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 20px ${({ theme }) => theme.shadow};
+    transition: all 0.3s ease;
+    
+    /* Terminal scan line effect */
+    &::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: ${({ theme }) => theme.primary};
+        box-shadow: 0 0 10px ${({ theme }) => theme.primary};
+        animation: scan-horizontal 3s linear infinite;
+    }
+    
+    @keyframes scan-horizontal {
+        0% { left: -100%; }
+        100% { left: 100%; }
+    }
+    
     @media (max-width: 960px) {
-        trastion: 0.8s all ease;
+        transition: 0.8s all ease;
     }
 `;
 export const NavbarContainer = styled.div`
@@ -63,18 +85,44 @@ export const NavLink = styled.a`
     color: ${({ theme }) => theme.text_primary};
     font-weight: 500;
     cursor: pointer;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
     text-decoration: none;
     display: flex;
     align-items: center;
-    gap: 8px; /* Added gap for icon spacing */
+    gap: 8px;
+    position: relative;
+    padding: 8px 0;
+    
+    /* Animated underline */
+    &::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: ${({ theme }) => theme.gradientCyan};
+        box-shadow: 0 0 10px ${({ theme }) => theme.neonCyan};
+        transition: width 0.3s ease;
+    }
+    
     :hover {
-      color: ${({ theme }) => theme.primary};
-      text-shadow: 0 0 10px ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.neonCyan};
+      text-shadow: 0 0 10px ${({ theme }) => theme.neonCyan},
+                   0 0 20px ${({ theme }) => theme.shadowCyan};
+    }
+    
+    :hover::after {
+        width: 100%;
     }
 
     &.active {
-      border-bottom: 2px solid ${({ theme }) => theme.primary};
+      color: ${({ theme }) => theme.primary};
+      
+      &::after {
+          width: 100%;
+          background: ${({ theme }) => theme.primary};
+      }
     }
 `;
 
@@ -98,27 +146,52 @@ export const MobileLink = styled.a`
 
 
 export const GitHubButton = styled.a`
-  border: 1px solid ${({ theme }) => theme.primary};
+  border: 2px solid ${({ theme }) => theme.primary};
   justify-content: center;
   display: flex;
   align-items: center;
   height: 70%;
-  border-radius: 4px; /* Less rounded for terminal look */
+  border-radius: 2px;
   color: ${({ theme }) => theme.primary};
   cursor: pointer;
   padding: 0 20px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  font-size: 16px;
-  transition: all 0.3s ease-in-out;
-    :hover {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+  
+  &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
       background: ${({ theme }) => theme.primary};
+      transition: left 0.4s ease;
+      z-index: -1;
+  }
+  
+  :hover {
       color: ${({ theme }) => theme.black};
-      box-shadow: 0 0 20px ${({ theme }) => theme.shadow}; 
-    }
-    @media screen and (max-width: 768px) { 
-    font-size: 14px;
-    }
+      border-color: ${({ theme }) => theme.neonCyan};
+      box-shadow: 0 0 20px ${({ theme }) => theme.shadow},
+                  0 0 30px ${({ theme }) => theme.shadowCyan};
+  }
+  
+  :hover::before {
+      left: 0;
+  }
+  
+  @media screen and (max-width: 768px) { 
+      font-size: 12px;
+      padding: 0 16px;
+  }
 `;
 
 export const ButtonContainer = styled.div`

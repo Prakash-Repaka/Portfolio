@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&family=Share+Tech+Mono&family=VT323&display=swap');
 
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
 }
 
 html {
@@ -19,54 +19,436 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    position: relative;
 }
 
-/* Custom Scrollbar - Cybersecurity Theme */
+/* CRT Screen Effect - Scan Lines */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(0, 255, 65, 0.03) 0px,
+        rgba(0, 255, 65, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+    );
+    pointer-events: none;
+    z-index: 9999;
+    animation: scanline 8s linear infinite;
+}
+
+/* CRT Flicker Effect */
+body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 255, 65, 0.02);
+    pointer-events: none;
+    z-index: 9998;
+    animation: flicker 0.15s infinite;
+}
+
+/* Custom Scrollbar - Terminal Theme */
 ::-webkit-scrollbar {
-    width: 6px;
-    height: 6px;
+    width: 8px;
+    height: 8px;
 }
 
 /* Track */
 ::-webkit-scrollbar-track {
     background: #000000;
+    border-left: 1px solid rgba(0, 255, 65, 0.2);
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    background: #00ff41;
+    background: linear-gradient(180deg, #00ff41 0%, #00ffff 100%);
     border-radius: 4px;
     transition: all 0.3s ease;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: #00cc33;
-    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+    background: linear-gradient(180deg, #00ffff 0%, #00ff41 100%);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.8), 0 0 20px rgba(0, 255, 255, 0.6);
 }
 
-/* Selection color */
+/* Selection color - Terminal style */
 ::selection {
-    background: rgba(0, 255, 65, 0.3);
-    color: #ffffff;
+    background: rgba(0, 255, 65, 0.4);
+    color: #000000;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.8);
 }
 
 ::-moz-selection {
-    background: rgba(0, 255, 65, 0.3);
-    color: #ffffff;
+    background: rgba(0, 255, 65, 0.4);
+    color: #000000;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.8);
 }
 
-/* Smooth transitions for all elements */
-* {
-    transition: background-color 0.3s ease, color 0.3s ease;
+/* ============================================
+   ADVANCED KEYFRAME ANIMATIONS
+   ============================================ */
+
+/* Scan Line Animation */
+@keyframes scanline {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
 }
 
-/* Utility classes */
+/* CRT Flicker */
+@keyframes flicker {
+    0% {
+        opacity: 0.27861;
+    }
+    5% {
+        opacity: 0.34769;
+    }
+    10% {
+        opacity: 0.23604;
+    }
+    15% {
+        opacity: 0.90626;
+    }
+    20% {
+        opacity: 0.18128;
+    }
+    25% {
+        opacity: 0.83891;
+    }
+    30% {
+        opacity: 0.65583;
+    }
+    35% {
+        opacity: 0.67807;
+    }
+    40% {
+        opacity: 0.26559;
+    }
+    45% {
+        opacity: 0.84693;
+    }
+    50% {
+        opacity: 0.96019;
+    }
+    55% {
+        opacity: 0.08594;
+    }
+    60% {
+        opacity: 0.20313;
+    }
+    65% {
+        opacity: 0.71988;
+    }
+    70% {
+        opacity: 0.53455;
+    }
+    75% {
+        opacity: 0.37288;
+    }
+    80% {
+        opacity: 0.71428;
+    }
+    85% {
+        opacity: 0.70419;
+    }
+    90% {
+        opacity: 0.7003;
+    }
+    95% {
+        opacity: 0.36108;
+    }
+    100% {
+        opacity: 0.24387;
+    }
+}
+
+/* Glow Pulse Animation */
+@keyframes glow-pulse {
+    0%, 100% {
+        text-shadow: 0 0 5px rgba(0, 255, 65, 0.5),
+                     0 0 10px rgba(0, 255, 65, 0.5),
+                     0 0 20px rgba(0, 255, 65, 0.3);
+    }
+    50% {
+        text-shadow: 0 0 10px rgba(0, 255, 65, 0.8),
+                     0 0 20px rgba(0, 255, 65, 0.8),
+                     0 0 30px rgba(0, 255, 65, 0.5),
+                     0 0 40px rgba(0, 255, 65, 0.3);
+    }
+}
+
+/* Glitch Effect */
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+    }
+    20% {
+        transform: translate(-2px, 2px);
+    }
+    40% {
+        transform: translate(-2px, -2px);
+    }
+    60% {
+        transform: translate(2px, 2px);
+    }
+    80% {
+        transform: translate(2px, -2px);
+    }
+    100% {
+        transform: translate(0);
+    }
+}
+
+/* Gradient Shift Animation */
+@keyframes gradient-shift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Float Animation */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+/* Shimmer Effect */
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+/* Terminal Typing Cursor */
+@keyframes blink {
+    0%, 50% {
+        opacity: 1;
+    }
+    51%, 100% {
+        opacity: 0;
+    }
+}
+
+/* Fade In Up */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade In */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Scale In */
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Border Glow Animation */
+@keyframes border-glow {
+    0%, 100% {
+        box-shadow: 0 0 5px rgba(0, 255, 65, 0.5),
+                    0 0 10px rgba(0, 255, 65, 0.3),
+                    inset 0 0 5px rgba(0, 255, 65, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(0, 255, 65, 0.8),
+                    0 0 30px rgba(0, 255, 65, 0.6),
+                    inset 0 0 10px rgba(0, 255, 65, 0.4);
+    }
+}
+
+/* Rotate */
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+
+/* Gradient Text */
 .gradient-text {
-    /* Gradient removed for Matrix theme, keeping class for compatibility but using solid green */
-    color: #00ff41;
+    background: linear-gradient(135deg, #00ff41 0%, #00ffff 50%, #00ff41 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 3s ease infinite;
 }
 
+/* Animated Gradient Text */
+.animated-gradient {
+    background: linear-gradient(135deg, #00ffff 0%, #b24bf3 50%, #ff006e 100%);
+    background-size: 200% 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradient-shift 4s ease infinite;
+}
+
+/* Monospace */
 .monospace {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'JetBrains Mono', 'Share Tech Mono', monospace;
+}
+
+/* Terminal Font */
+.terminal-font {
+    font-family: 'VT323', 'Share Tech Mono', monospace;
+    letter-spacing: 1px;
+}
+
+/* Glassmorphism */
+.glass {
+    background: rgba(0, 20, 20, 0.2);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+}
+
+.glass-heavy {
+    background: rgba(0, 20, 20, 0.4);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(0, 255, 65, 0.3);
+}
+
+/* Hover Effects */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 255, 65, 0.3);
+}
+
+.hover-glow {
+    transition: all 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.6),
+                0 0 40px rgba(0, 255, 65, 0.4);
+    border-color: #00ffff;
+}
+
+/* 3D Card Effect */
+.card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.card-3d:hover {
+    transform: rotateY(5deg) rotateX(5deg);
+}
+
+/* Perspective Container */
+.perspective-container {
+    perspective: 1000px;
+}
+
+/* Terminal Cursor */
+.terminal-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: #00ff41;
+    margin-left: 5px;
+    animation: blink 1s step-end infinite;
+}
+
+/* Glow Text */
+.glow-text {
+    animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Smooth Transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Disable transitions for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+    
+    body::before,
+    body::after {
+        display: none;
+    }
+}
+
+/* Focus Styles - Terminal Theme */
+*:focus-visible {
+    outline: 2px solid #00ff41;
+    outline-offset: 2px;
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+}
+
+/* Link Styles */
+a {
+    color: #00ffff;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    color: #00ff41;
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.6);
 }

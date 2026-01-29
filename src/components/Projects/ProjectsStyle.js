@@ -28,57 +28,88 @@ export const Wrapper = styled.div`
 `;
 
 export const Title = styled.div`
-font-size: 42px;
-text-align: center;
-font-weight: 600;
-margin-top: 20px;
+  font-size: 52px;
+  text-align: center;
+  font-weight: 700;
+  margin-top: 20px;
   color: ${({ theme }) => theme.text_primary};
+  text-shadow: 
+    0 0 10px ${({ theme }) => theme.primary},
+    0 0 20px ${({ theme }) => theme.shadow};
+  animation: glow-pulse 3s ease-in-out infinite;
+  
+  /* Terminal prompt style */
+  &::before {
+    content: "> ";
+    color: ${({ theme }) => theme.neonCyan};
+  }
+  
   @media (max-width: 768px) {
-      margin-top: 12px;
-      font-size: 32px;
+    margin-top: 12px;
+    font-size: 36px;
   }
 `;
 
 export const Desc = styled.div`
-    font-size: 18px;
-    text-align: center;
-    max-width: 600px;
-    color: ${({ theme }) => theme.text_secondary};
-    @media (max-width: 768px) {
-        margin-top: 12px;
-        font-size: 16px;
-    }
+  font-size: 18px;
+  text-align: center;
+  max-width: 600px;
+  color: ${({ theme }) => theme.text_white};
+  opacity: 0.9;
+  margin-bottom: 10px;
+  
+  @media (max-width: 768px) {
+    margin-top: 12px;
+    font-size: 16px;
+  }
 `;
 
 export const ToggleButtonGroup = styled.div`
-    display: flex;
-    border: 1.5px solid ${({ theme }) => theme.primary};
-    color: ${({ theme }) => theme.primary};
-    font-size: 16px;
-    border-radius: 4px; /* Less rounded */
-    font-weight: 500;
-    margin: 22px 0px;
-    @media (max-width: 768px) {
-        font-size: 12px;
-    }
+  display: flex;
+  border: 2px solid ${({ theme }) => theme.primary};
+  color: ${({ theme }) => theme.primary};
+  font-size: 16px;
+  border-radius: 2px;
+  font-weight: 600;
+  margin: 22px 0px;
+  background: ${({ theme }) => theme.cardGlass};
+  backdrop-filter: ${({ theme }) => theme.glassBlur};
+  box-shadow: 0 0 20px ${({ theme }) => theme.shadow};
+  overflow: hidden;
+  
+  @media (max-width: 768px) {
+    font-size: 12px;
+    flex-wrap: wrap;
+  }
 `
 
 export const ToggleButton = styled.div`
-    padding: 8px 18px;
-    border-radius: 4px; /* Less rounded */
-    cursor: pointer;
-    ${({ active, theme }) =>
+  padding: 12px 24px;
+  border-radius: 0;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  
+  ${({ active, theme }) =>
         active && `
-    background: ${theme.primary + 20};
+      background: ${theme.primary};
+      color: ${theme.black};
+      box-shadow: inset 0 0 20px rgba(0, 255, 65, 0.3);
     `
     }
-    &:hover {
-        background: ${({ theme }) => theme.primary + 8};
-    }
-    @media (max-width: 768px) {
-        padding: 6px 8px;
-        border-radius: 4px;
-    }
+  
+  &:hover {
+    background: ${({ theme }) => theme.primary}20;
+    color: ${({ theme }) => theme.neonCyan};
+    text-shadow: 0 0 10px ${({ theme }) => theme.neonCyan};
+  }
+  
+  @media (max-width: 768px) {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
 `
 export const Divider = styled.div`
     width: 1.5px;
